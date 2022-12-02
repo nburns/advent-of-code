@@ -21,7 +21,7 @@ elves = lines.split("\n\n").each_with_index.map do |elf_data, idx|
     Elf.new(idx, calories)
 end.to_a.sort { |a, b| a.calories <=> b.calories }
 
-puts elves[-1]
+puts elves[-3:-1]
 
 
 
