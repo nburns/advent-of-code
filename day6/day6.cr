@@ -1,7 +1,7 @@
 #!/usr/bin/env crystal
 input = File.read("input.txt").strip.split('\n')
 
-TheBuffer = 4.times.map { |_| "" }.to_a
+TheBuffer = 14.times.map { |_| "" }.to_a
 
 def start?
     TheBuffer.uniq.size == TheBuffer.size && TheBuffer.all? { |e| e != "" }
