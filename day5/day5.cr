@@ -5,7 +5,6 @@ raw_box_text, raw_instructions_text = input
 
 *raw_boxes, _column_nums = raw_box_text.split("\n")
 
-
 boxes = Hash(Int32, Array(String)).new { |h, k| h[k] = [] of String }
 
 raw_boxes.each do |row|
@@ -15,16 +14,19 @@ raw_boxes.each do |row|
     end
 end
 
-
 raw_instructions_text.strip.split("\n").map(&.split(" ")).each do |(_move, count, _from, from, _to, to)|
+    load = [] of String
+
     count.to_i.times do
-        boxes[to.to_i].push(boxes[from.to_i].pop)
+        load.push(boxes[from.to_i].pop)
+    end
+
+    count.to_i.times do
+        boxes[to.to_i].push(load.pop)
     end
 end
 
 boxes.to_a.sort_by { |(k, _v)| k }.each do |_column, boxes|
     print boxes.last
 end
-
-
-
+print "\n"
